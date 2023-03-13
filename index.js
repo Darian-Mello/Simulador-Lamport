@@ -3,6 +3,7 @@ var totalIncrementos = 15;
 var mensagemEnviada = false;
 var tempoEnvio = 10;
 var processos = [];
+var processosAux = [];
 var emissor;
 var receptor;
 var clockEnviado;
@@ -14,16 +15,11 @@ function criaProcessos () {
             simular(i);
         }
     } else {
-        let aux = processos;
+        processosAux = processos;
         processos = [];
         for (let i = 0; i < totalProcessos; i++) {
-            if (aux[i]) {
-                processos.push([aux[i][aux[i].length - 1]]);
-                simular(i);
-            } else {
-                processos.push([]);
-                simular(i);
-            }
+            processos.push([]);
+            simular(i);
         }
     }
 }
@@ -33,7 +29,11 @@ function clock (index) {
         let tempo = index + 1;
         setTimeout(() => {
             if (processos[index].length == 0) {
-                processos[index].push(0);
+                if (processosAux[index]) {
+                    processos[index].push(processosAux[index][processosAux[index].length - 1]);
+                } else {
+                    processos[index].push(0);
+                }
             } else {
                 let tempoAtualizado = (processos[index][processos[index].length - 1]) + tempo;
                 if (mensagemEnviada && receptor == index) {
