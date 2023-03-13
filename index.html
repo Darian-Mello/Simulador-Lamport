@@ -14,7 +14,7 @@
                     Simulador Lamport
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form method="post">
                         <div class="form-group mt-2">
                             <label for="total-processos">Número de processos: </label>
                             <select class="col-6" name="total-processos" id="total-processos">
@@ -48,7 +48,8 @@
                             <label for="tempo-envio">Tempo do Envio </label>
                             <input id="tempo-envio" class="col-6" type="number" max="15" min="1" required>
                         </div>
-                        <button id="btn-simular" type="submit" class="btn btn-primary mt-3">Simular</button>
+                        <button id="btn-simular" class="btn btn-primary mt-3">Simular</button>
+                        <button id="btn-resetar" class="btn btn-dark mt-3">Resetar</button>
                     </form>
                     <div id="simulacao-processos" class="mt-5">
                     </div>
